@@ -8,11 +8,17 @@ use Gemini\Laravel\Facades\Gemini;
 class GeminiController extends Controller
 {
     public function sendTestQuestion(Request $request) { 
-        // if ($request->hasFile('audio') )  { 
+        if ($request->hasFile('audio')  && $request->question)  { 
             $speechController = new SpeechRecognitionController();
             $transcriptionResult = $speechController->transcribe($request);
-            return $transcriptionResult ;
-        // }
+            return 
+            response()->json([
+                "transcrip_Key" => $transcriptionResult,
+                "question_Key"  => $request->question
+            ]);
+            
+            // $transcriptionResult ;
+        }
        
     }
     
@@ -22,36 +28,36 @@ class GeminiController extends Controller
         $geminiResult = "";
         $transcriptionResult = "";
 
+
+        $speechController = new SpeechRecognitionController();
+        $transcriptionResult = $speechController->transcribe($request)->getData()->transcription ?? null;
         // Check if request has file and does not have text question
-        if ($request->hasFile('audio') && empty($request->input('textQuestion'))) {
+        if ($request->hasFile('audio') && empty($request->question)) {
             // Instantiate SpeechRecognitionController and call transcribe method
-            $speechController = new SpeechRecognitionController();
-            $transcriptionResult = $speechController->transcribe($request);
-        
-            // Check if transcription result is available
-            if (isset($transcriptionResult['transcription'])) {
-                return response()->json(['transcription_result' => $transcriptionResult['transcription']]);
+            if ($transcriptionResult!=null) {
+                return  response()->json(['transcriptionResult' => $transcriptionResult], 200);
             } else {
                 return response()->json(['error' => 'Transcription failed'], 500);
             }
         }
 
-        // Merge text request into question if present
-        $question = $request->textQuestion ?? "";
+      
+        $question = $request->question ?? "";
         
         // If both text question and file are present, append them
-        if ($request->has('text') && $request->hasFile('file')) {
+        if ($request->question != null  && $request->hasFile('audio')) {
             $question .= ' ' . $transcriptionResult;
-        } elseif ($request->has('text') && !empty($question)) {
-            $question = $request->textQuestion;
+        } elseif ($request->question && ! $request->hasFile('audio')) {
+            $question = $request->question;
         }
 
-        // Generate content using Gemini
+      
         $geminiResult = Gemini::geminiPro()->generateContent($question);
 
         // Return response with both Gemini and transcription results if available
         return response()->json([
             'gemini_result' => $geminiResult->text(),
+            // 'question_reuslt' =>  $question,
             'transcription_result' => $transcriptionResult,
         ]);
     }

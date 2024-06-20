@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class SpeechRecognitionController extends Controller
-{
+{ 
+    private  $api_key;
     public function transcribe(Request $request)
     {
         $api_key = "ad4b84748aae4ecba589eb88e8d122f5";
