@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\GeminiController;
 use App\Http\Controllers\SpeechRecognitionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/question', [GeminiController::class, 'sendQuestion']);
 Route::post('/questionTest', [GeminiController::class, 'sendTestQuestion']);
 Route::post('/transcribe', [SpeechRecognitionController::class, 'transcribe']);
+
+
+Route::post('/chat/send-message', [ChatController::class, 'sendMessage'])->name('chat.send_message');

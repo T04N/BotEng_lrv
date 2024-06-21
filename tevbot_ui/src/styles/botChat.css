@@ -1,0 +1,73 @@
+
+
+.card {
+    height: auto;
+    width: auto;
+
+}
+
+.box-chat {
+    display: flex;
+    justify-content: flex-start; 
+    margin-bottom: 25px;  
+}
+  
+  .card {
+    max-width: 1000px !important;
+    min-width: 160px !important; 
+    width: auto; /* Chiều rộng sẽ tự động thay đổi */
+    margin: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+  
+  .card-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .card-text {
+    font-size: 14px;
+    line-height: 1.4;
+    /* Bổ sung thêm các style bạn muốn áp dụng cho card-text */
+  }
+  
+  /* USER CHAT */
+
+  .user-chat {
+  display: flex;
+  justify-content: flex-end; /* Căn trái cho user chat */
+  margin-bottom: 25px; /* Khoảng cách giữa các user chat */
+}
+
+
+.user-chat .card {
+  min-width: 160px !important; /* Độ rộng tối thiểu của card */
+  width: auto; /* Chiều rộng tự động thay đổi */
+  margin: 5px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-chat .card-body {
+  padding: 10px;
+}
+
+.user-chat .card-title {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.user-chat .card-text {
+  font-size: 14px;
+  line-height: 1.4;
+  /* Bổ sung thêm các style bạn muốn áp dụng cho card-text */
+}

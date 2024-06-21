@@ -28,7 +28,6 @@ class GeminiController extends Controller
         $geminiResult = "";
         $transcriptionResult = "";
 
-
         $speechController = new SpeechRecognitionController();
         $transcriptionResult = $speechController->transcribe($request)->getData()->transcription ?? null;
         // Check if request has file and does not have text question
@@ -49,16 +48,15 @@ class GeminiController extends Controller
             $question .= ' ' . $transcriptionResult;
         } elseif ($request->question && ! $request->hasFile('audio')) {
             $question = $request->question;
-        }
-
-      
+        }      
         $geminiResult = Gemini::geminiPro()->generateContent($question);
-
+        $welcome = "Hello! How can I assist you today?";
         // Return response with both Gemini and transcription results if available
         return response()->json([
+            'welcome' => $welcome,
+            'transcription_result' => $transcriptionResult,
             'gemini_result' => $geminiResult->text(),
             // 'question_reuslt' =>  $question,
-            'transcription_result' => $transcriptionResult,
         ]);
     }
 }

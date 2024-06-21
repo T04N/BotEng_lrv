@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GeminiController;
+use App\Http\Controllers\ChatController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +14,15 @@ use App\Http\Controllers\GeminiController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+// routes/web.php
+
+// TESTING CHAT BOX
+Route::get('/', [ChatController::class, 'showChatView'])->name('chat.start');
 
 
 
