@@ -1,0 +1,18 @@
+.app { 
+    background-color: rgb(9, 6, 15);
+    height:  auto;
+}
+.mainChat {
+    position: relative; /* Đặt parent là relative */
+  }
+  .historyChatSidebar {
+
+  }
+
+  
+  .historyChat {
+    position: sticky;
+    top: 0; /* Đặt vị trí bắt đầu dính từ đầu trang */
+    height: 100vh; /* Đặt chiều cao tối đa của Sidebar, 100% chiều cao của viewport */
+    overflow-y: auto; /* Cho phép cuộn nếu nội dung vượt quá chiều cao */
+  }

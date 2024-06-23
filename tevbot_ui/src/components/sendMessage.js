@@ -11,8 +11,7 @@ const SendMessage = () => {
         </span> */}
         {/* Input for search */}
         <input type="text" className="form-control form-input" placeholder="Search anything..." />
-      
-
+    
       </div>
     </div>
   );

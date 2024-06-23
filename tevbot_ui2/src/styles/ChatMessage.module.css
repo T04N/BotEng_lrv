@@ -1,0 +1,39 @@
+/* ChatMessage.module.css */
+
+.chat__conversation-board__message-container {
+    display: flex;
+    margin-bottom: 16px;
+  }
+  
+  .user-message-container {
+    justify-content: flex-end;
+  }
+  
+  .bot-message-container {
+    justify-content: flex-start;
+  }
+  
+  .chat__conversation-board__message__person {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+    margin-left: 12px;
+  }
+  
+  .chat__conversation-board__message__person__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 8px;
+  }
+  
+  .chat__conversation-board__message__context {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Customize other styles as needed for bubbles, buttons, etc. */
+  .user-chat , .bot-chat {
+    margin-bottom: 20px !important;
+  }
